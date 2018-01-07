@@ -1,11 +1,11 @@
-package intro_to_array_lists;
+package league_invaders;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 public class GameObject {
-		public static int x;	
-		int y;
+	 	int x = 0;	
+		int y = 0;
 	    int width;
 	    int height;
 

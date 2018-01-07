@@ -1,4 +1,4 @@
-package intro_to_array_lists;
+package league_invaders;
 
 import java.awt.Dimension;
 import java.awt.event.KeyListener;
@@ -22,12 +22,12 @@ gp = new GamePanel();
 }
 void setup() {
 	frame.add(gp);
-	frame.addKeyListener(gp);
 	frame.getContentPane().setPreferredSize(new Dimension(width, height));
     frame.pack();
 	frame.setVisible(true);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	gp.StartGame();
+	frame.addKeyListener(gp);
 }
 
 	
