@@ -9,6 +9,7 @@ public class Rocketship extends GameObject {
 	boolean down = false;
 	boolean right = false;
 	boolean left = false;
+	
 
 	Rocketship(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -17,6 +18,7 @@ public class Rocketship extends GameObject {
 	}
 
 	void update() {
+		  super.update();
 		if (up) {
 			System.out.println("y: " + y);
 			this.y -= speed;

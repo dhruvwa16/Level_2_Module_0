@@ -31,12 +31,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void updateGameState() {
 		System.out.println("y gamestate: " + rocketship.y);
 		object.update();
-
-	}
-
-	private void update(ObjectManager object2) {
-		// TODO Auto-generated method stub
-		
+        object.manageEnemies();
+        object.purgeObjects();
+        object.checkCollision();
+        if(rocketship.isAlive == false){
+        	currentState++;
+        }
 	}
 
 	void updateEndState() {
@@ -70,6 +70,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(font);
 		g.drawString("You killed x enemies", 130, 350);
 		g.drawString("Press ENTER to restart", 105, 500);
+		
 
 	}
 
@@ -89,6 +90,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		repaint();
 		if (currentState == MENU_STATE) {
 
@@ -148,6 +150,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			
 		{
 			rocketship.left = true;
+		}
+		if(b.getKeyCode() == KeyEvent.VK_SPACE) {
+			  object.addProjectile(new Projectile(rocketship.x+20, rocketship.y, 10, 10));
 		}
 	}
 

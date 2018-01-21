@@ -10,6 +10,7 @@ Projectile(int x, int y, int width, int height) {
 		this.speed = 10;
 	}
 void update(){
+	  super.update();
 	y = y - speed;
 	if(y<0) {
 		boolean isAlive = false;
