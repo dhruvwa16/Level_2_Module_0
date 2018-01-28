@@ -7,7 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -22,7 +25,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int GAME_STATE = 1;
 	final int END_STATE = 2;
 	int currentState = MENU_STATE;
-	
+	public static BufferedImage alienImg;
+
+    public static BufferedImage rocketImg;
+
+    public static BufferedImage bulletImg;
 
 	void updateMenuState() {
 
@@ -36,8 +43,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         object.checkCollision();
         if(rocketship.isAlive == false){
         	currentState++;
+        	reset();
+       
         }
 	}
+
+	private void reset() {
+		// TODO Auto-generated method stub
+		rocketship = new Rocketship(250, 700, 50, 50);
+object.addRocketship(rocketship);
+		
+	}	
+
 
 	void updateEndState() {
 
@@ -52,6 +69,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(font);
 		g.drawString("Press ENTER to start", 130, 350);
 		g.drawString("Press SPACE for instructions", 105, 500);
+		  
 	}
 
 	void drawGameState(Graphics g) {
@@ -68,7 +86,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 		g.drawString("Game Over", 110, 200);
 		g.setFont(font);
-		g.drawString("You killed x enemies", 130, 350);
+		g.drawString("You killed " +object.getScore()+" enemies", 130, 350);
 		g.drawString("Press ENTER to restart", 105, 500);
 		
 
@@ -114,6 +132,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		endfont = new Font("Arial", Font.PLAIN, 50);
 		rocketship = new Rocketship(250, 700, 50, 50);
 		object = new ObjectManager(rocketship);
+		   try {
+
+               alienImg = ImageIO.read(this.getClass().getResourceAsStream("alien.png"));
+
+               rocketImg = ImageIO.read(this.getClass().getResourceAsStream("rocket.png"));
+
+               bulletImg = ImageIO.read(this.getClass().getResourceAsStream("bullet.png"));
+
+       } catch (IOException e) {
+
+               // TODO Auto-generated catch block
+
+               e.printStackTrace();
+
+       }
 	}
 
 	void StartGame() {

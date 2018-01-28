@@ -11,6 +11,10 @@ public class ObjectManager {
 	long enemyTimer = System.currentTimeMillis();
 	int enemySpawnTime = 1000;
 	
+ int score = 0;
+	public int getScore(){
+		return score;
+	}
 ObjectManager(Rocketship rocketship){
 	rocket = rocketship;	
 }
@@ -57,6 +61,7 @@ enemyTimer = System.currentTimeMillis();
 void purgeObjects() {
 	for (int i = 0; i < aliens.size(); i++) {
 		if(aliens.get(i).isAlive == false ) {
+			score = getScore()+1;
 			aliens.remove(i);
 		}
 	}
@@ -77,4 +82,9 @@ if(p.collisionBox.intersects(a.collisionBox)) {
 	
 }
 }
+public void addRocketship(Rocketship rocketship) {
+	// TODO Auto-generated method stub
+	rocket = rocketship;
+}
+
 }
