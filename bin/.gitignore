@@ -1,6 +1,8 @@
 /GameObject.class
 /GamePanel.class
 /Snake.class
+/SnakeObject.class
 /intro_to_array_lists/
 /league_invaders/
-/SnakeObject.class
+/ObjectManager.class
+/Food.class

@@ -16,6 +16,9 @@ Timer timer;
 Font titlefont;
 Font font;
 SnakeObject snake;
+ObjectManager object;
+Food food;
+ObjectManager object2;
 final int MENU_STATE = 0;
 
 final int GAME_STATE = 1;
@@ -26,7 +29,7 @@ void updateMenuState(){
 	
 }
 void updateGameState(){
-	snake.update();
+	object.update();
 }
 
 
@@ -41,7 +44,7 @@ void drawMenuState(Graphics g){
     g.drawString("Press enter to start", 100, 300);
 }
 void drawGameState(Graphics g){
-	snake.draw(g);
+	object.draw(g);
 }
 
 void drawEndState(Graphics g){
@@ -56,8 +59,10 @@ GamePanel(){
 	timer = new Timer(1000/60, this);
 titlefont = new Font("Arial",Font.PLAIN,96);
 font = new Font("Arial",Font.PLAIN,48);
-snake = new SnakeObject(250, 500, 20, 20);
-
+snake = new SnakeObject(100, 100, 50, 50);
+object = new ObjectManager(snake);
+food = new Food(50,50,50,50);
+object.addFood(food);
 }
 @Override
 public void actionPerformed(ActionEvent e) {
@@ -80,14 +85,15 @@ void StartGame() {
 	timer.start();
 }
 @Override
-public void keyTyped(KeyEvent a) {
+public void keyTyped(KeyEvent b) {
 	// TODO Auto-generated method stub
-	if (a.getKeyChar() == KeyEvent.VK_ENTER) {
+	if (b.getKeyChar() == KeyEvent.VK_ENTER) {
 		currentState++;
 	if(currentState > END_STATE){
 
         currentState = MENU_STATE;
 	}
+
 }	
 }
 @Override
@@ -95,16 +101,30 @@ public void keyPressed(KeyEvent b) {
 	// TODO Auto-generated method stub
 	if (b.getKeyCode() == KeyEvent.VK_UP) {
 		snake.up = true;
+		snake.down = false;
+		snake.right = false;
+		snake.left = false;
+	
+		
 	}
 	if (b.getKeyCode() == KeyEvent.VK_DOWN) {
+		snake.up = false;
 		snake.down = true;
+		snake.right = false;
+		snake.left = false;
 	}
 	if (b.getKeyCode() == KeyEvent.VK_RIGHT) {
-        snake.right = true;
+		snake.up = false;
+		snake.down = false;
+		snake.right = true;
+		snake.left = false;
 	}
 	if (b.getKeyCode() == KeyEvent.VK_LEFT)
 		
 	{
+		snake.up = false;
+		snake.down = false;
+		snake.right = false;
 		snake.left = true;
 	}
 
@@ -112,20 +132,7 @@ public void keyPressed(KeyEvent b) {
 
 @Override
 public void keyReleased(KeyEvent c) {
-	if (c.getKeyCode() == KeyEvent.VK_UP) {
-		snake.up = false;
-	}
-	if (c.getKeyCode() == KeyEvent.VK_DOWN) {
-		snake.down = false;
-	}
-	if (c.getKeyCode() == KeyEvent.VK_RIGHT) {
-		snake.right = false;
-	}
-	if (c.getKeyCode() == KeyEvent.VK_LEFT)
-
-	{
-		snake.left = false;
-	}
+	
 }
 @Override
 
@@ -140,14 +147,14 @@ public void paintComponent(Graphics g){
 	g.setColor(Color.GREEN);
 
 	g.fillRect(0, 0, Snake.width, Snake.height);   
-    drawMenuState(g);
+  
         drawGameState(g);
 
 }else if(currentState == END_STATE){
 	g.setColor(Color.RED);
 
 	g.fillRect(0, 0, Snake.width, Snake.height);   
-    drawMenuState(g);
+   
         drawEndState(g);
 
 }
