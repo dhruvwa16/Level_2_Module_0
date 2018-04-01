@@ -9,7 +9,7 @@ boolean right = false;
 boolean left = false;
 SnakeObject(int x, int y, int width, int height){
 	super(x, y, width, height);
-	this.speed = 10;
+	this.speed = 2;
 		// TODO Auto-generated constructor stub
 	}
 void update(){
@@ -27,6 +27,7 @@ void update(){
 	if (left) {
 		x -= speed;
 	}
+	
 }
 
 void draw(Graphics g) {

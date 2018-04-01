@@ -30,6 +30,7 @@ void updateMenuState(){
 }
 void updateGameState(){
 	object.update();
+	
 }
 
 
@@ -59,9 +60,10 @@ GamePanel(){
 	timer = new Timer(1000/60, this);
 titlefont = new Font("Arial",Font.PLAIN,96);
 font = new Font("Arial",Font.PLAIN,48);
-snake = new SnakeObject(100, 100, 50, 50);
+snake = new SnakeObject(100, 100, 20, 20);
 object = new ObjectManager(snake);
-food = new Food(50,50,50,50);
+food = new Food(50,50,20,20);
+ObjectManager object2;
 object.addFood(food);
 }
 @Override
