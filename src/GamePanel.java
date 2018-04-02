@@ -134,7 +134,7 @@ public void keyPressed(KeyEvent b) {
 
 @Override
 public void keyReleased(KeyEvent c) {
-	
+	object.checkCollision();
 }
 @Override
 

@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.util.Random;
 
 public class ObjectManager {
 	SnakeObject snake;
@@ -22,17 +23,18 @@ public class ObjectManager {
 	  food.draw(g);
 	}
 	void checkCollision() {
-for (int i = 0; i <600; i+=20) {
-	   snake.height = snake.height + 20;
     if(snake.collisionBox.intersects(food.collisionBox)){
+    	 snake.height = snake.height + 20;
+    	 Random rand = new Random();
 
-         
-           food.x = i;
-            food.y =i;
+    	 int  n = rand.nextInt(600) + 1;
+           food.x = n;
+       	 int  a = rand.nextInt(600) + 1;
+            food.y =a;
 
     }
 	
-}
+
        
 
         }
