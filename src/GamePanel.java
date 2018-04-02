@@ -129,12 +129,12 @@ public void keyPressed(KeyEvent b) {
 		snake.right = false;
 		snake.left = true;
 	}
-
+	object.checkCollision();
 }	
 
 @Override
 public void keyReleased(KeyEvent c) {
-	object.checkCollision();
+	
 }
 @Override
 
