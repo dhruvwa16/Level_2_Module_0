@@ -8,9 +8,6 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
-import league_invaders.Rocketship;
-
 public class GamePanel extends JPanel implements ActionListener, KeyListener{
 Timer timer;
 Font titlefont;
@@ -45,6 +42,12 @@ void drawMenuState(Graphics g){
     g.drawString("Press enter to start", 100, 300);
 }
 void drawGameState(Graphics g){
+	g.setColor(Color.BLUE);
+	for (int i = 20; i < 600; i+=20) {
+	g.drawRect(0, i, 600, 1);
+		g.drawRect(i, 0, 1, 600);
+}
+
 	object.draw(g);
 }
 
@@ -60,9 +63,9 @@ GamePanel(){
 	timer = new Timer(1000/60, this);
 titlefont = new Font("Arial",Font.PLAIN,96);
 font = new Font("Arial",Font.PLAIN,48);
-snake = new SnakeObject(100, 100, 20, 20);
+snake = new SnakeObject(80, 80, 20, 20);
 object = new ObjectManager(snake);
-food = new Food(50,50,20,20);
+food = new Food(40,40,20,20);
 ObjectManager object2;
 object.addFood(food);
 }
@@ -120,6 +123,7 @@ public void keyPressed(KeyEvent b) {
 		snake.down = false;
 		snake.right = true;
 		snake.left = false;
+		
 	}
 	if (b.getKeyCode() == KeyEvent.VK_LEFT)
 		

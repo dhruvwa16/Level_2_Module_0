@@ -24,18 +24,14 @@ public class ObjectManager {
 	}
 	void checkCollision() {
     if(snake.collisionBox.intersects(food.collisionBox)){
-    	 snake.height = snake.height + 20;
-    	 Random rand = new Random();
-
-    	 int  n = rand.nextInt(600) + 1;
-           food.x = n;
-       	 int  a = rand.nextInt(600) + 1;
-            food.y =a;
-
+    	 snake.height = snake.height + 19;
+    	 Random a = new Random();
+    	 int  n = a.nextInt(601)/19 * 19;
+    	 food.x = n;
+	 int  b = a.nextInt(601)/20 * 19;
+	 food.y = b;
     }
-	
 
-       
 
         }
 	}
