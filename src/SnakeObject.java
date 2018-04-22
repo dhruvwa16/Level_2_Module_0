@@ -10,10 +10,9 @@ public class SnakeObject extends GameObject {
 	boolean right = false;
 	boolean left = false;
 	ArrayList<Location> tail = new ArrayList<Location>();
-
 	SnakeObject(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		this.speed = 1;
+		this.speed = 5;
 		tail.add(new Location(x, y));
 		// TODO Auto-generated constructor stub
 	}
@@ -44,8 +43,9 @@ public class SnakeObject extends GameObject {
 		}
 		if (tail.size() > tailSize) {
 			tail.remove(0);
+			tail.add(new Location(x, y));
 		}
-		tail.add(new Location(x, y));
+
 	}
 
 	void setTailSize(int tailSize) {

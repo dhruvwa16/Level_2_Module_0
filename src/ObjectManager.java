@@ -32,7 +32,7 @@ public class ObjectManager {
 			Random a = new Random();
 			int n = a.nextInt(601) / 20 * 20;
 			food.x = n;
-			int b = a.nextInt(601) / 20 * 19;
+			int b = a.nextInt(601) / 20 * 20;
 			food.y = b;
 		}
 

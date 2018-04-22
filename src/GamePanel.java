@@ -56,7 +56,8 @@ void drawEndState(Graphics g){
 	g.setColor(Color.BLACK);
 	g.drawString("Game Over", 75,200);
     g.setFont(font);
-    g.drawString("Your score is x enemies", 75, 300);
+    g.drawString("Your score is x "
+    		+ "enemies", 75, 300);
 }
 
 GamePanel(){
