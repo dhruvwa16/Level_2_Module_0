@@ -8,7 +8,7 @@ public class Food extends GameObject{
 		// TODO Auto-generated constructor stub
 	}
 void update() {
-
+super.update();
 }
 void draw(Graphics g) {
     g.setColor(Color.RED);

@@ -61,7 +61,7 @@ void drawEndState(Graphics g){
 }
 
 GamePanel(){
-	timer = new Timer(1000/60, this);
+	timer = new Timer(1000/20, this);
 titlefont = new Font("Arial",Font.PLAIN,96);
 font = new Font("Arial",Font.PLAIN,48);
 snake = new SnakeObject(80, 80, 20, 20);
@@ -153,7 +153,7 @@ public void paintComponent(Graphics g){
 }else if(currentState == GAME_STATE){
 	g.setColor(Color.GREEN);
 
-	g.fillRect(0, 0, Snake.width, Snake.height);   
+	//g.fillRect(0, 0, Snake.width, Snake.height);   
   
         drawGameState(g);
 
