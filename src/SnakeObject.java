@@ -42,7 +42,6 @@ public class SnakeObject extends GameObject {
 		}
 		tail.add(new Location(x, y));
 	}
-
 	void draw(Graphics g) {
 		g.setColor(Color.WHITE);
 

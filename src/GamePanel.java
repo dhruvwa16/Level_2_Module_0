@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -26,11 +27,9 @@ void updateMenuState(){
 	
 }
 void updateGameState(){
-	object.update();
-	
+	object.update();	
 }
-
-
+		
 void updateEndState(){
 	
 }
@@ -106,33 +105,49 @@ public void keyTyped(KeyEvent b) {
 public void keyPressed(KeyEvent b) {
 	// TODO Auto-generated method stub
 	if (b.getKeyCode() == KeyEvent.VK_UP) {
+		if(snake.down == true) {
+			snake.down = true;
+		}
+		else {
 		snake.up = true;
 		snake.down = false;
 		snake.right = false;
 		snake.left = false;
-	
-		
+		}
 	}
+	
 	if (b.getKeyCode() == KeyEvent.VK_DOWN) {
-		snake.up = false;
+		if(snake.up == true) {
+			snake.up = true;
+		}
+		else{
+			snake.up = false;
 		snake.down = true;
 		snake.right = false;
 		snake.left = false;
+		}
 	}
 	if (b.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if(snake.left == true) {
+			snake.left = true;
+		}
+		else {
 		snake.up = false;
 		snake.down = false;
 		snake.right = true;
 		snake.left = false;
-		
+		}
 	}
-	if (b.getKeyCode() == KeyEvent.VK_LEFT)
-		
-	{
+	if (b.getKeyCode() == KeyEvent.VK_LEFT)	{
+		if(snake.right == true) {
+			snake.right = true;
+		}
+		else {
 		snake.up = false;
 		snake.down = false;
 		snake.right = false;
 		snake.left = true;
+	}
 	}
 	object.checkCollision();
 }	
