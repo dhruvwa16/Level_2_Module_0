@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JPanel;
@@ -27,7 +28,30 @@ void updateMenuState(){
 	
 }
 void updateGameState(){
-	object.update();	
+  object.update();
+	if(snake.x>600) {
+		snake.x=0;
+	}
+	if(snake.y>600) {
+		snake.y=0;
+	}
+	if(snake.x<0) {
+		snake.x=600;
+	}
+	if(snake.y<0) {
+		snake.y=0;
+	}
+  List<Location>tail = snake.getTail();
+  for(int i = 0; i < tail.size(); i++ ) {
+		for (int j = i+1; j < tail.size(); j++) {
+			if (tail.get(j).x==tail.get(i).x &&tail.get(j).y==tail.get(i).y&&snake.x!=80) {
+				snake.tailSize = 0;
+				System.out.println("dead");
+				currentState++;
+			}
+
+		}
+		}
 }
 		
 void updateEndState(){
@@ -85,6 +109,7 @@ public void actionPerformed(ActionEvent e) {
 
       updateEndState();
   }
+	  object.checkCollision();
 }
 void StartGame() {
 	timer.start();
@@ -149,7 +174,7 @@ public void keyPressed(KeyEvent b) {
 		snake.left = true;
 	}
 	}
-	object.checkCollision();
+	
 }	
 
 @Override

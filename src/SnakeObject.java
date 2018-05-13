@@ -10,6 +10,7 @@ public class SnakeObject extends GameObject {
 	boolean right = false;
 	boolean left = false;
 	ArrayList<Location> tail = new ArrayList<Location>();
+
 	SnakeObject(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		this.speed = 20;
@@ -23,18 +24,15 @@ public class SnakeObject extends GameObject {
 		if (up) {
 			y -= speed;
 
-		}
-		else if (down) {
+		} else if (down) {
 			y += speed;
-		}
-		else 	if (right) {
+		} else if (right) {
 			x += speed;
-			for (int i = 0; i < tail.size(); i++) {
-			System.out.print("["+tail.get(i).x+","+tail.get(i).y+"] ");
-			}
-			System.out.println("");
-		}
-		else if (left) {
+//			for (int i = 0; i < tail.size(); i++) {
+//				System.out.print("[" + tail.get(i).x + "," + tail.get(i).y + "] ");
+//			}
+//			System.out.println("");
+		} else if (left) {
 			x -= speed;
 		}
 		if (tail.size() > tailSize) {
@@ -42,24 +40,24 @@ public class SnakeObject extends GameObject {
 		}
 		tail.add(new Location(x, y));
 	}
-	void draw(Graphics g) {
-		g.setColor(Color.WHITE);
 
-		g.fillRect(x, y, width, height);
+	void draw(Graphics g) {
+	
+		g.setColor(Color.WHITE);
 		for (Location l : tail) {
 			g.fillRect(l.x, l.y, width, height);
-			
-			
-			
-		}
-	
 
+		}
+	g.setColor(Color.BLUE);
+
+		g.fillRect(x, y, width, height);
 	}
 
 	void setTailSize(int tailSize) {
 		this.tailSize = tailSize;
 	}
- ArrayList<Location> getTail() {
-	 return tail;
- }
+
+	ArrayList<Location> getTail() {
+		return tail;
+	}
 }
