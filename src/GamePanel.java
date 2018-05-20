@@ -17,6 +17,7 @@ Font font;
 SnakeObject snake;
 ObjectManager object;
 Food food;
+int score = 0;
 ObjectManager object2;
 final int MENU_STATE = 0;
 
@@ -30,33 +31,35 @@ void updateMenuState(){
 void updateGameState(){
   object.update();
 	if(snake.x>600) {
-		snake.x=0;
+		currentState++;
 	}
 	if(snake.y>600) {
-		snake.y=0;
+		currentState++;
 	}
 	if(snake.x<0) {
-		snake.x=600;
+		currentState++;
 	}
 	if(snake.y<0) {
-		snake.y=0;
+		currentState++;
 	}
   List<Location>tail = snake.getTail();
   for(int i = 0; i < tail.size(); i++ ) {
 		for (int j = i+1; j < tail.size(); j++) {
 			if (tail.get(j).x==tail.get(i).x &&tail.get(j).y==tail.get(i).y&&snake.x!=80) {
 				snake.tailSize = 0;
-				System.out.println("dead");
 				currentState++;
 			}
 
 		}
 		}
+	if (snake.x==food.x&&snake.y==food.y) {
+		score++;
 }
-		
+}	
 void updateEndState(){
-	
-}
+
+	}
+
 void drawMenuState(Graphics g){
 	g.setFont(titlefont);
 	g.setColor(Color.GREEN);
@@ -72,15 +75,17 @@ void drawGameState(Graphics g){
 }
 
 	object.draw(g);
-}
+	
+	}
+
 
 void drawEndState(Graphics g){
 	g.setFont(titlefont);
 	g.setColor(Color.BLACK);
 	g.drawString("Game Over", 75,200);
     g.setFont(font);
-    g.drawString("Your score is x "
-    		+ "enemies", 75, 300);
+    g.drawString("Your score is "+ score +
+    		 " enemies", 75, 300);
 }
 
 GamePanel(){
@@ -90,7 +95,6 @@ font = new Font("Arial",Font.PLAIN,48);
 snake = new SnakeObject(80, 80, 20, 20);
 object = new ObjectManager(snake);
 food = new Food(40,40,20,20);
-ObjectManager object2;
 object.addFood(food);
 }
 @Override
@@ -98,7 +102,7 @@ public void actionPerformed(ActionEvent e) {
 	repaint();
 	// TODO Auto-generated method stub
 	  if(currentState == MENU_STATE){
-
+		  score =0;
           updateMenuState();
 
   }else if(currentState == GAME_STATE){
@@ -106,7 +110,12 @@ public void actionPerformed(ActionEvent e) {
           updateGameState();
 
   }else if(currentState == END_STATE){
-
+	  timer = new Timer(1000/20, this);
+	  snake = new SnakeObject(80, 80, 20, 20);
+	  object = new ObjectManager(snake);
+	  food = new Food(40,40,20,20);
+	  object.addFood(food);
+	  
       updateEndState();
   }
 	  object.checkCollision();

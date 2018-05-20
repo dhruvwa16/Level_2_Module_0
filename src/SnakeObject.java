@@ -15,7 +15,7 @@ public class SnakeObject extends GameObject {
 		super(x, y, width, height);
 		this.speed = 20;
 		tail.add(new Location(x, y));
-		tailSize = 2;
+		tailSize = 0;
 		// TODO Auto-generated constructor stub
 	}
 

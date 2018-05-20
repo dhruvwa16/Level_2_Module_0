@@ -29,10 +29,7 @@ public class ObjectManager {
 	}
 
 	void checkCollision() {
-		int score = 0;
 		if (snake.x==food.x&&snake.y==food.y) {
-			score++;
-			System.out.println("xollision");
 			snake.tailSize++;
 			Random a = new Random();
 			int n = a.nextInt(601) / 20 * 20;
@@ -45,7 +42,7 @@ public class ObjectManager {
 		for (int j = i+1; j < tail.size(); j++) {
 			if (tail.get(j).x==tail.get(i).x &&tail.get(j).y==tail.get(i).y) {
 				snake.tailSize = 0;
-				System.out.println("dead");
+			
 			}
 
 		}
