@@ -68,17 +68,16 @@ void drawMenuState(Graphics g){
     g.drawString("Press enter to start", 100, 300);
 }
 void drawGameState(Graphics g){
-	g.setColor(Color.BLUE);
+	g.setColor(Color.GREEN);
+	g.fillRect(0,0, 600, 600);
 	for (int i = 20; i < 600; i+=20) {
+		g.setColor(Color.BLUE);
 	g.drawRect(0, i, 600, 1);
 		g.drawRect(i, 0, 1, 600);
-}
-
-	object.draw(g);
-	
 	}
+	object.draw(g);
 
-
+}
 void drawEndState(Graphics g){
 	g.setFont(titlefont);
 	g.setColor(Color.BLACK);
@@ -87,9 +86,9 @@ void drawEndState(Graphics g){
     g.drawString("Your score is "+ score +
     		 " enemies", 75, 300);
 }
-
+int fps = 10;
 GamePanel(){
-	timer = new Timer(1000/20, this);
+	timer = new Timer(1000/fps, this);
 titlefont = new Font("Arial",Font.PLAIN,96);
 font = new Font("Arial",Font.PLAIN,48);
 snake = new SnakeObject(80, 80, 20, 20);
@@ -100,7 +99,10 @@ object.addFood(food);
 @Override
 public void actionPerformed(ActionEvent e) {
 	repaint();
-	// TODO Auto-generated method stub
+	if(Math.random() > 0.99) {
+		fps++;
+		timer.setDelay(1000/fps);
+	}
 	  if(currentState == MENU_STATE){
 		  score =0;
           updateMenuState();
@@ -110,7 +112,9 @@ public void actionPerformed(ActionEvent e) {
           updateGameState();
 
   }else if(currentState == END_STATE){
-	  timer = new Timer(1000/20, this);
+	  System.out.println("reset");
+	  fps = 10;
+	  timer.setDelay(1000/fps);
 	  snake = new SnakeObject(80, 80, 20, 20);
 	  object = new ObjectManager(snake);
 	  food = new Food(40,40,20,20);

@@ -36,8 +36,10 @@ public class ObjectManager {
 			food.x = n;
 			int b = a.nextInt(601) / 20 * 20;
 			food.y = b;
+			List<Location>tail = snake.getTail();
 		}
-		List<Location>tail = snake.getTail();
+		List<Location>tail = snake.getTail();	
+		
 	for(int i = 0; i < tail.size(); i++ ) {
 		for (int j = i+1; j < tail.size(); j++) {
 			if (tail.get(j).x==tail.get(i).x &&tail.get(j).y==tail.get(i).y) {
@@ -46,6 +48,7 @@ public class ObjectManager {
 			}
 
 		}
+		
 		}
 
 	}
