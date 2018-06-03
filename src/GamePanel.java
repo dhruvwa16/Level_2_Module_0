@@ -29,7 +29,6 @@ void updateMenuState(){
 	
 }
 void updateGameState(){
-  object.update();
 	if(snake.x>600) {
 		currentState++;
 	}
@@ -76,15 +75,16 @@ void drawGameState(Graphics g){
 		g.drawRect(i, 0, 1, 600);
 	}
 	object.draw(g);
-
+	g.setColor(Color.WHITE);
+g.fillRect(100, 80, 100, 20);
 }
 void drawEndState(Graphics g){
 	g.setFont(titlefont);
 	g.setColor(Color.BLACK);
 	g.drawString("Game Over", 75,200);
     g.setFont(font);
-    g.drawString("Your score is "+ score +
-    		 " enemies", 75, 300);
+    g.drawString("Your ate "+ score +
+    		 " apples", 150, 300);
 }
 int fps = 10;
 GamePanel(){
@@ -92,6 +92,7 @@ GamePanel(){
 titlefont = new Font("Arial",Font.PLAIN,96);
 font = new Font("Arial",Font.PLAIN,48);
 snake = new SnakeObject(80, 80, 20, 20);
+
 object = new ObjectManager(snake);
 food = new Food(40,40,20,20);
 object.addFood(food);
@@ -99,7 +100,7 @@ object.addFood(food);
 @Override
 public void actionPerformed(ActionEvent e) {
 	repaint();
-	if(Math.random() > 0.99) {
+	if(Math.random() > 0.5) {
 		fps++;
 		timer.setDelay(1000/fps);
 	}
@@ -151,6 +152,8 @@ public void keyPressed(KeyEvent b) {
 		snake.down = false;
 		snake.right = false;
 		snake.left = false;
+		
+		
 		}
 	}
 	
